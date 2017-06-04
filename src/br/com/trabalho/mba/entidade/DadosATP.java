@@ -9,7 +9,7 @@ public class DadosATP implements Serializable {
 	 */
 	private static final long serialVersionUID = 4825327089578803013L;
 	
-	private String cidade;
+	private String cidade; 
 	private String torneio;
 	private int ano;
 	

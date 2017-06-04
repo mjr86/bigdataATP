@@ -27,9 +27,13 @@ public class DashBoard extends HttpServlet {
 		
 		Map<String,Integer> mapaNumeroJogosCidade = dao.recuperaNumeroJogosPorCidade();
 		
+		Map mapaMaioresCampeoes = dao.recuperaMaioresCampeoesPorTorneio();
+		
+		
+		
 		request.setAttribute("mapaNumeroJogosCidade", mapaNumeroJogosCidade);
 		
-		System.out.println(mapaNumeroJogosCidade.get("Santiago"));
+		
 		
 		String jsp = "/dashBoard.jsp";
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(jsp);
