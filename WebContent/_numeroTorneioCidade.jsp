@@ -2,12 +2,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <p class="tituloCampeoes"> 
-Número de Jogos por Cidade (10 mais)
+Número de Torneios por Cidade (10 mais)
 </p>
-<div id="mapaNumeroJogosCidade" style="width:95%; height:250px;"></div>
+<div id="mapaNumeroTorneioCidade" style="width:95%; height:250px;"></div>
 	<script>
 	// Create the chart
-	Highcharts.chart('mapaNumeroJogosCidade', {
+	Highcharts.chart('mapaNumeroTorneioCidade', {
 	    chart: {
 	        type: 'column'
 	    },
@@ -22,7 +22,7 @@ Número de Jogos por Cidade (10 mais)
 	    },
 	    yAxis: {
 	        title: {
-	            text: 'número de jogos'
+	            text: 'número de torneio(s)'
 	        }
 
 	    },
@@ -39,10 +39,10 @@ Número de Jogos por Cidade (10 mais)
 	        }
 	    },
 	    series: [{
-	        name: 'Número de Jogos',
+	        name: 'Número de Torneios',
 	        colorByPoint: true,
 	        data: [
-	        	<c:forEach var="mapa" items="${requestScope.mapaNumeroJogosCidade}">
+	        	<c:forEach var="mapa" items="${requestScope.mapaNumeroTorneioCidade}">
 		        	{
 			            name: '${mapa.key}',
 			            y: ${mapa.value},
