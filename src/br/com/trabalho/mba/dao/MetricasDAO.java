@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import br.com.trabalho.mba.entidade.Partida;
+
 public class MetricasDAO {
 
 	public static void main(String[] args) {
@@ -160,6 +162,34 @@ public class MetricasDAO {
 
 		}
 
+	}
+	
+	public void insertConfrontos(Partida partida) {
+		String sql = "insert into confronto(jogador1, jogador2, vitoriasJogador1, vitoriasJogador2) values(?,?,?,?)";
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		try{
+			conn = Conexao.abrir();
+
+			psmt = conn.prepareStatement(sql);
+
+			psmt.setString(1, partida.getJogador1());
+			psmt.setString(2, partida.getJogador2());
+			psmt.setString(3, String.valueOf(partida.getVitoriasJogador1()));
+			psmt.setString(4, String.valueOf(partida.getVitoriasJogador2()));
+
+			psmt.executeUpdate();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			try {
+				psmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
 	}
 
 }
