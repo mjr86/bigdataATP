@@ -62,7 +62,7 @@ public class VitoriasJogadorPorSuperficieDeQuadra {
 			System.out.println("-------------");
 			
 			MetricasDAO dao = new MetricasDAO();
-			dao.insereDesempenhoPorSuperficie(row.getAs("jogadorVencedor"), row.getAs("tipoSuperficieQuadra"), row.getAs("total_vitorias"), false);
+			//dao.insereDesempenhoPorSuperficie(row.getAs("jogadorVencedor"), row.getAs("tipoSuperficieQuadra"), row.getAs("total_vitorias"), false);
 		}
 		System.out.println("-------------derrotas por superficie");
 		for (Row row : listaDerrotasPorSuperficieQuadra) {
@@ -72,7 +72,7 @@ public class VitoriasJogadorPorSuperficieDeQuadra {
 			System.out.println("-------------");
 			
 			MetricasDAO dao = new MetricasDAO();
-			dao.updateDesempenhoPorSuperficie(row.getAs("jogadorPerdedor"), row.getAs("tipoSuperficieQuadra"), row.getAs("total_derrotas"));
+			//dao.updateDesempenhoPorSuperficie(row.getAs("jogadorPerdedor"), row.getAs("tipoSuperficieQuadra"), row.getAs("total_derrotas"));
 		}
 	}
 }

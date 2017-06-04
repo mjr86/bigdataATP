@@ -1,24 +1,14 @@
 package br.com.trabalho.mba.processamento;
 
-import static org.apache.spark.sql.functions.col;
-
 import java.util.List;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.sql.AnalysisException;
-import org.apache.spark.sql.DataFrameReader;
-import org.apache.spark.sql.Dataset;
-import org.apache.spark.sql.Row;
-import org.apache.spark.sql.SQLContext;
-import org.apache.spark.sql.SparkSession;
 
 import br.com.trabalho.mba.dao.MetricasDAO;
-import scala.Enumeration.Val;
 import scala.Tuple2;
-import scala.Tuple3;
 
 public class JogoPorCidade {
 	public static void main(String[] args) {
@@ -51,7 +41,7 @@ public class JogoPorCidade {
 			System.out.println("Cidade: " + cidadeJogos._1());
 			System.out.println("Número de jogos: " + cidadeJogos._2());
 			MetricasDAO dao = new MetricasDAO();
-			dao.insereQtdJogoPorCidade(cidadeJogos._1().toString(), cidadeJogos._2().longValue());
+			//dao.insereQtdJogoPorCidade(cidadeJogos._1().toString(), cidadeJogos._2().longValue());
 		}
 
 	}

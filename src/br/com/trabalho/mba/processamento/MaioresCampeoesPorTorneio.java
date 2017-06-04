@@ -59,7 +59,7 @@ SparkConf conf = new SparkConf().setMaster("local").setAppName("BusProcessor");
 			System.out.println("-------------");
 			MetricasDAO dao = new MetricasDAO();
 			try {
-				dao.insereCampeoesPorTorneio(row.getAs("torneio"), row.getAs("vencedorTorneio"), row.getAs("total"));
+				//dao.insereCampeoesPorTorneio(row.getAs("torneio"), row.getAs("vencedorTorneio"), row.getAs("total"));
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
 			} catch (Exception e) {

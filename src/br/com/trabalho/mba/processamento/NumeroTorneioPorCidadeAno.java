@@ -106,7 +106,7 @@ public class NumeroTorneioPorCidadeAno {
 
 			System.out.println("-------------");
 			MetricasDAO dao = new MetricasDAO();
-			dao.insereQtdTorneioPorCidade(row.getAs("qtd_torneio"), row.getAs("cidade"));
+			//dao.insereQtdTorneioPorCidade(row.getAs("qtd_torneio"), row.getAs("cidade"));
 		}
 
 		System.out.println("-------------listaTorneioPorCidadeAno");

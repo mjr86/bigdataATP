@@ -21,7 +21,7 @@ public class DashBoardDAO {
 		try{
 			conn = Conexao.abrir();
 
-			String sql = "select qtd_jogo,cidade from jogo_cidade order by cidade limit 10";
+			String sql = "select qtd_jogo,cidade from jogo_cidade order by qtd_jogo desc limit 10";
 
 			psmt = conn.prepareStatement(sql);
 
