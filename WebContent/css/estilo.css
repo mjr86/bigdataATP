@@ -72,3 +72,50 @@ body {
     right: 0;
     margin: 0 auto;
 }
+
+.search-input-col-6 {
+	width: 49.66% !important;
+}
+
+.default-btn {
+	background:#00aeef;
+	border: none;
+	padding: 10px;
+	margin-top: 10px;
+	color: white;
+	width: 99.70%;
+}
+
+.empty-input {
+	border: 1px solid red;
+}
+
+.quadra a {
+    display: block;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #e2e2e2;
+    border: 1px solid #b7b7b7;
+    text-decoration: none;
+    color: black;
+}
+
+.quadra a:hover {
+    background-color: #f7f7f7;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 10px;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}

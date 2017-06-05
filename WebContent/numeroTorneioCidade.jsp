@@ -1,13 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<p class="tituloCampeoes"> 
-Número de Jogos por Cidade (10 mais)
-</p>
-<div id="mapaNumeroJogosCidade" style="width:95%; height:250px;"></div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>ATP</title>
+	<link href="<c:url value="/css/estilo.css" />" rel="stylesheet" type="text/css" />
+	<script src="<c:url value="/js/jquery-3.2.1.min.js" />"></script>
+	<script src="<c:url value="/js/highcharts.src.js" />"></script>
+</head>
+<body>
+	<jsp:include page="menu.jsp" />
+	
+	<div class="container">
+		<h2>Número de Torneios por Cidade (10 mais)</h2>
+	
+		<div id="mapaNumeroTorneioCidade" class="plot-area">
+		</div>
+	</div>
+	
 	<script>
-	// Create the chart
-	Highcharts.chart('mapaNumeroJogosCidade', {
+	Highcharts.chart('mapaNumeroTorneioCidade', {
 	    chart: {
 	        type: 'column'
 	    },
@@ -22,7 +36,7 @@ Número de Jogos por Cidade (10 mais)
 	    },
 	    yAxis: {
 	        title: {
-	            text: 'número de jogos'
+	            text: 'número de torneio(s)'
 	        }
 
 	    },
@@ -39,10 +53,10 @@ Número de Jogos por Cidade (10 mais)
 	        }
 	    },
 	    series: [{
-	        name: 'Número de Jogos',
+	        name: 'Número de Torneios',
 	        colorByPoint: true,
 	        data: [
-	        	<c:forEach var="mapa" items="${requestScope.mapaNumeroJogosCidade}">
+	        	<c:forEach var="mapa" items="${requestScope.mapaNumeroTorneioCidade}">
 		        	{
 			            name: '${mapa.key}',
 			            y: ${mapa.value},
@@ -54,3 +68,5 @@ Número de Jogos por Cidade (10 mais)
 	    
 	});
 	</script>
+</body>
+</html>
