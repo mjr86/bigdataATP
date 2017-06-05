@@ -9,7 +9,6 @@ import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
-import br.com.trabalho.mba.dao.MetricasDAO;
 import br.com.trabalho.mba.entidade.Partida;
 
 public class VitoriasPorConfronto {
@@ -21,47 +20,38 @@ public class VitoriasPorConfronto {
 
 		SparkSession spark = SparkSession.builder().appName("ATP").getOrCreate();
 		
-		Dataset<String> partidas = spark.read().textFile("C:/Users/Carlos Libanio/Downloads/jogosTenisATP.csv");
+		Dataset<Row> partidas = spark.read().csv("C:/Users/Carlos Libanio/Downloads/jogosTenisATP.csv");
 		
 		JavaRDD<Partida> vitoriasJ1 = partidas
 				.javaRDD().map(line -> {
-					String[] parts = line.split(",");
-					
 					Partida p = new Partida();
-					p.setJogador1(parts[9]);
-					p.setJogador2(parts[10]);
+					p.setJogador1(line.getString(9));
+					p.setJogador2(line.getString(10));
 					p.setVitoriasJogador1(1);
 					return p;
 				});
 		
 		JavaRDD<Partida> vitoriasJ2 = partidas
 				.javaRDD().map(line -> {
-					String[] parts = line.split(",");
-					
 					Partida p = new Partida();
-					p.setJogador1(parts[10]);
-					p.setJogador2(parts[9]);
+					p.setJogador1(line.getString(10));
+					p.setJogador2(line.getString(9));
 					p.setVitoriasJogador2(1);
 					return p;
 				});
 		
 		vitoriasJ1 = vitoriasJ1.union(vitoriasJ2);
-
+		
 		Dataset<Row> set = spark.createDataFrame(vitoriasJ1, Partida.class);
 		set.createOrReplaceTempView("confrontos");
 
-		Dataset<Row> maioresCampeosPorTorneioDF = spark.sql("select jogador1, sum(vitoriasJogador1) as vitoriasJ1, jogador2, SUM(vitoriasJogador2) as vitoriasJ2 from confrontos group by jogador1, jogador2 order by jogador1 asc)");
+		Dataset<Row> maioresCampeosPorTorneioDF = spark.sql("select jogador1, sum(vitoriasJogador1) as vitoriasJ1, jogador2, SUM(vitoriasJogador2) as vitoriasJ2 from confrontos group by jogador1, jogador2 order by jogador1 asc");
 		List<Row> listaMaioresCampeosPorTorneioDF = maioresCampeosPorTorneioDF.collectAsList();
 
-		MetricasDAO dao = new MetricasDAO();
 		for (Row row : listaMaioresCampeosPorTorneioDF) {
-			Partida partida = new Partida();
-			partida.setJogador1(row.getAs("jogador1"));
-			partida.setJogador2(row.getAs("jogador2"));
-			partida.setVitoriasJogador1(((Long) row.getAs("vitoriasJ1")).intValue());
-			partida.setVitoriasJogador2(((Long) row.getAs("vitoriasJ2")).intValue());
 			
-			dao.insertConfrontos(partida);
+			
+			System.out.println("(" + row.getAs("vitoriasJ1") + ") " + row.getAs("jogador1") + " x (" + row.getAs("vitoriasJ2") + ") " + row.getAs("jogador2"));
 		}
 	}
 }
