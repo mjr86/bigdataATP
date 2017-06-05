@@ -11,6 +11,6 @@
         <li><a href="<c:url value="/ascencao" />">Ascenção Ano</a></li>
         <li><a href="<c:url value="/confronto" />">Confronto</a></li>
         <li><a href="<c:url value="/desempenho/jogador" />">Desempenho por Sets</a></li>
-        <li><a href="">Metrica 01</a></li>
+<!--         <li><a href="">Metrica 01</a></li> -->
     </ul>
 </nav>
